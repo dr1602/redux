@@ -1,7 +1,7 @@
 import { PokeCard } from './PokeCard';
-import { type PokemonDataType } from '~/types/pokeTypes';
+import { type PokeDetail } from '~/types/pokeTypes';
 
-export const PokeList = ({ pokemons }: { pokemons: PokemonDataType[] }) => {
+export const PokeList = ({ pokemons }: { pokemons: PokeDetail[] }) => {
   return (
     <>
       <div className='row w-100 justify-content-center '>
@@ -9,7 +9,9 @@ export const PokeList = ({ pokemons }: { pokemons: PokemonDataType[] }) => {
           <PokeCard
             key={pokemon.name}
             name={pokemon.name}
-            className='col-sm-3 m-3'
+            type={pokemon.types[0].type.name}
+            imgUrl={pokemon.sprites.front_default}
+            className='col-sm-3 m-3 cursor-pointer'
           />
         ))}
       </div>

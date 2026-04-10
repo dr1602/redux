@@ -1,13 +1,13 @@
 import type { SET_POKEMONS } from './actionTypes';
-import type { PokemonDataType } from './pokeTypes';
+import type { PokeDetail } from './pokeTypes';
 
 export interface PokemonState {
-  pokemons: PokemonDataType[];
+  pokemons: PokeDetail[];
 }
 
 export interface PokemonAction {
   type: typeof SET_POKEMONS;
-  payload: PokemonDataType[];
+  payload: PokeDetail[];
 }
 
 

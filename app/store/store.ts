@@ -3,10 +3,12 @@ import {
   combineReducers,
   compose,
   applyMiddleware,
+  type Action,
 } from '@reduxjs/toolkit';
+import { thunk, type ThunkDispatch } from 'redux-thunk';
 
 import { pokemonsreducer } from '~/reducers/pokemonsReducer';
-import { featuring, logger, upperCaseMiddleware } from '~/middlewares';
+import { logger } from '~/middlewares';
 
 export const rootReducer = combineReducers({
   pokemonData: pokemonsreducer,
@@ -19,8 +21,8 @@ const composeAlt =
     (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
   compose;
 
-const composedEnhancers = composeAlt(
-  applyMiddleware(logger, featuring, upperCaseMiddleware),
-);
+const composedEnhancers = composeAlt(applyMiddleware(logger, thunk));
 
 export const store = createStore(rootReducer, composedEnhancers);
+
+export type AppDispatch = ThunkDispatch<RootState, undefined, Action>;

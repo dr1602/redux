@@ -6,26 +6,27 @@ import logo from '../statics/logo.svg';
 import { PokeList } from '~/components/PokeList';
 import { Searcher } from '~/components/Searcher';
 import { getPokemon } from '~/api/getPokemon';
-import { type RootState } from '~/store/store';
-import { setPokemons } from '~/actions';
+import { getPokemonDetails } from '~/api/getPokemonDetails';
+import { type RootState, type AppDispatch } from '~/store/store';
+import { getPokemonsWithDetails } from '~/actions';
 
 export function Welcome() {
   const pokemons = useSelector(
     (state: RootState) => state.pokemonData.pokemons,
   );
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const fetchPokemons = async () => {
       const pokeRes = await getPokemon();
 
       if (pokeRes) {
-        dispatch(setPokemons(pokeRes));
+        dispatch(getPokemonsWithDetails(pokeRes));
       }
     };
 
     fetchPokemons();
-  }, [getPokemon, setPokemons]);
+  }, [getPokemon, getPokemonsWithDetails, getPokemonDetails]);
 
   return (
     <main>

@@ -1,5 +1,4 @@
 import { type Middleware } from '@reduxjs/toolkit';
-import { pokemonsreducer } from '~/reducers/pokemonsReducer';
 
 import { type RootState } from '~/store/store';
 import { SET_POKEMONS } from '~/types/actionTypes';
